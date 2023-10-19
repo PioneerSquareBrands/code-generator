@@ -18,13 +18,18 @@ main {
   min-width: 360px;
 }
 
-.generator {
-  display: flex;
+.wrapper {
   width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
+}
+
+.generator {
+  display: flex;
   gap: 40px;
   align-items: center;
   justify-content: center;
+  padding: 40px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -128,5 +133,93 @@ fieldset {
 
   &-button.shown {
     opacity: 1;
+  }
+}
+
+.generator-two {
+  max-width: 880px;
+  margin-bottom: 200px;
+}
+
+.generator-item {
+  background-color: #f3f3f3;
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 2fr 2fr 3fr 2fr;
+  align-items: center;
+
+  &__brand span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 2px;
+    transition: background-color 0.2s;
+  }
+
+  &.brand--brenthaven &__brand span { 
+    background-color: #1B3F5C; 
+  }
+  
+  &.brand--gumdrop-cases &__brand span { 
+    background-color: #02B1D3; 
+  }
+
+  &.brand--invalid-sku &__brand span { 
+    background-color: #e35656;
+  }
+
+  &__url {
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  &__code {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    svg {
+      width: 100px;
+      height: auto;
+      margin: -12px;
+    }
+  }
+
+  .empty-code {
+    width: 100%;
+    max-width: 92px;
+    margin: -8px;
+    position: relative;
+    
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 0;
+      padding-top: 100%;
+      background: #000000;
+      position: relative;
+      z-index: 1;
+      border-radius: 2px;
+    }
+
+    &:after {
+      content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-frown'><circle cx='12' cy='12' r='10'></circle><path d='M16 16s-1.5-2-4-2-4 2-4 2'></path><line x1='9' y1='9' x2='9.01' y2='9'></line><line x1='15' y1='9' x2='15.01' y2='9'></line></svg>");
+      position: absolute;
+      color: red;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      font-weight: 800;
+      z-index: 2;
+      width: 50px;
+      height: 50px;
+      opacity: 0.8;
+    }
   }
 }
