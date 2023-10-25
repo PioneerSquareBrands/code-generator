@@ -14,66 +14,15 @@
 </head>
 <body>
   <main class="root">
-    <div class="wrapper generator">
-      <div class="left-column content">
-        <h1>PSB 2D Code Generator</h1>
-
-        <p>QR Code and Data Matrix Generator for PSB.</p>
-
-        <p><strong>Instructions:</strong></p>
-
-        <ol>
-          <li>Input a comma-separated list of Item Masters in the Item Master field</li>
-          <li>Click on Generate Table</li>
-          <li>In the table, choose the brand that uses that Item Master</li>
-          <li>Click on Generate QR to generate a QR Code</li>
-        </ol>
-        <hr>
-        <h2>Options</h2>
-        <form>
-          <fieldset>
-            <div class="input-group">
-              <label for="partNumber">Part #</label>
-              <input type="text" id="partNumber" placeholder="Test" />
-            </div>
-            <div class="input-group">
-              <span>Website</span>
-              <div class="website-options">
-                <input type="radio" id="brenthaven" name="website" value="https://brenthaven.com" checked="checked" />
-                <label for="brenthaven">Brenthaven</label>
-                <input type="radio" id="gumdrop" name="website" value="https://www.gumdropcases.com" />
-                <label for="gumdrop">Gumdrop Cases</label>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-      <div class="right-column generate">
-        <h2>
-          Data Matrix
-          <button class="generate-button button--data-matrix" data-type="data-matrix">Save as PNG</button>
-        </h2>
-        <div class="code-placeholder data-matrix"></div>
-
-        <h2>
-          QR Code
-          <button class="generate-button button--qr-code" data-type="qr-code">Save as PNG</button>
-        </h2>
-        <div class="code-placeholder qr-code"></div>
-
-        <button id="downloadButton">Download as PNG</button>
-      </div>
-    </div>
     <div class="wrapper generator-two">
       <h1>PSB 2D Code Generator</h1>
       <form class="bulk-generator">
         <input type="text" placeholder="List of SKUs">
       </form>
       <div class="generator-table">
-        Nothing to show here.
+        <span class="generator-empty">Nothing to show here.</span>
       </div>
     </div>
-    //
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.5/canvg.js"></script>

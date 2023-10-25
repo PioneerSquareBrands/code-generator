@@ -86,17 +86,19 @@ body {
 }
 
 main {
-  display: -ms-grid;
-  display: grid;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   height: 98vh;
   padding: 0 20px;
   min-width: 360px;
+  margin-top: 200px;
 }
 
 .wrapper {
@@ -228,7 +230,11 @@ fieldset input[type=radio] + label {
 
 .generator-two {
   max-width: 880px;
-  margin-bottom: 200px;
+}
+
+.generator-empty {
+  display: block;
+  padding: 12px 4px;
 }
 
 .generator-item {
@@ -239,8 +245,8 @@ fieldset input[type=radio] + label {
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2fr 2fr 3fr 2fr;
-  grid-template-columns: 2fr 2fr 3fr 2fr;
+  -ms-grid-columns: 2fr 2fr 3fr 100px 100px;
+  grid-template-columns: 2fr 2fr 3fr 100px 100px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -267,7 +273,7 @@ fieldset input[type=radio] + label {
   font-size: 11px;
   color: #aaa;
 }
-.generator-item__code {
+.generator-item__datamatrix, .generator-item__qrcode {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -278,15 +284,19 @@ fieldset input[type=radio] + label {
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.generator-item__code svg {
+.generator-item__datamatrix svg, .generator-item__qrcode svg {
   width: 100px;
   height: auto;
-  margin: -12px;
+}
+.generator-item__datamatrix svg {
+  margin: -12px 0 -12px 4px;
+}
+.generator-item__qrcode svg {
+  margin: -12px -12px -12px 4px;
 }
 .generator-item .empty-code {
   width: 100%;
   max-width: 92px;
-  margin: -8px;
   position: relative;
 }
 .generator-item .empty-code:before {
@@ -314,4 +324,10 @@ fieldset input[type=radio] + label {
   width: 50px;
   height: 50px;
   opacity: 0.8;
+}
+.generator-item__datamatrix .empty-code {
+  margin: -8px 2px -8px -8px;
+}
+.generator-item__qrcode .empty-code {
+  margin: -8px -8px -8px 0;
 }

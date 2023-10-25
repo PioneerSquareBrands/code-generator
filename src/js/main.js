@@ -1,84 +1,11 @@
 console.log("PSB 2D Code Gnerator Start");
 
-let partNumber = document.querySelector('#partNumber');
-let qrContainer = document.querySelector('.code-placeholder.qr-code');
-let dataMatrixContainer = document.querySelector('.code-placeholder.data-matrix');
-let downloadButtons = document.querySelectorAll('.generate-button');
-
-window.onload = function () {
-  generator(partNumber.value);
-  lister();
-};
-
-partNumber.addEventListener('input', function() {
-  if (partNumber.value) {
-    generator(partNumber.value);
-  }
-});
-
-document.querySelector('form').addEventListener('change', function (event) {
-  generator(partNumber.value);
-})
-
-downloadButtons.forEach(function(b) {
-  b.addEventListener('click', function(e) {
-    let button = e.target;
-    let name = button.dataset.name;
-    let type = button.dataset.type;
-    
-    download(button, name, type);
-  });
-});
-
-
-function generator(val) {
-  let url = document.querySelector('input[name="website"]:checked').value;
-  let finalURL = url + '/' + val;
-
-  let dataMatrix = DATAMatrix({
-    msg: finalURL,
-    dim: 2000,
-    pad: 1
-  });
-
-  let qrCode = QRCode({
-    msg: finalURL,
-    dim: 2000,
-    pad: 1
-  });
-
-  dataMatrixContainer.replaceChildren();
-  dataMatrixContainer.appendChild(dataMatrix);
-  qrContainer.replaceChildren();
-  qrContainer.appendChild(qrCode);
-
-  document.querySelectorAll('.generate-button').forEach((b) => {
-    b.classList.add('shown');
-    b.dataset.name = val;
-  });
-}
-
-function download(button, name, type){
-   var svg = new XMLSerializer().serializeToString(document.querySelector('.code-placeholder.' + type + ' svg'));
-
-   var canvas = document.createElement('canvas');
-   var ctx = canvas.getContext('2d');
-
-   canvg(canvas, svg);
-
-   var dataURL = canvas.toDataURL('image/png');
-
-   var a = document.createElement('a');
-   a.href = dataURL;
-   a.download = name + '-' + type + '.png';
-   a.style.display = 'none';
-   document.body.appendChild(a);
-   a.click();
-   document.body.removeChild(a);
-}
-
 // Bulk Generator
 let listInput = document.querySelector('.bulk-generator input');
+
+window.onload = function () {
+  lister();
+};
 
 listInput.addEventListener('input', function() {
   lister();
@@ -89,12 +16,12 @@ function lister() {
   let inputArr = inputVal.split(/,\s*/);
   let generatorTable = document.querySelector('.generator-table');
 
-  if (inputVal){
-    generatorTable.innerHTML = '';
+  generatorTable.innerHTML = '';
 
-    inputArr.forEach(value => {
+  inputArr.forEach(value => {
+    if(value != ''){
       let item = document.createElement('div');
-      
+    
       // Make the item div
       item.classList.add('generator-item');
 
@@ -110,7 +37,7 @@ function lister() {
       } else if (itemBrand == 'Gumdrop Cases') {
         itemURL = 'https://www.gumdropcases.com/' + value;
       } else {
-        itemURL = 'Invalid URL';
+        itemURL = 'Invalid URL. Please check the value.';
       }
 
       // Insert the item content
@@ -118,25 +45,35 @@ function lister() {
         <div class="generator-item__value">${value}</div>
         <div class="generator-item__brand"><span>${itemBrand}</span></div>
         <div class="generator-item__url">${itemURL}</div>
-        <div class="generator-item__code"></div>
+        <div class="generator-item__datamatrix"><a href="#"></a></div>
+        <div class="generator-item__qrcode"><a href="#"></a></div>
       `;
 
-      console.log(itemURL);
-      if (itemURL != 'Invalid URL'){
+      // Check if URL is invalid, otherwise generate datamatrix/qr code
+      if (!itemURL.includes('Invalid URL')){
         let dataMatrix = DATAMatrix({
           msg: itemURL,
           dim: 2000,
           pad: 1
         });
-        item.querySelector('.generator-item__code').replaceChildren();
-        item.querySelector('.generator-item__code').appendChild(dataMatrix);
+
+        let qrCode = QRCode({
+          msg: itemURL,
+          dim: 2000,
+          pad: 1
+        });
+        item.querySelector('.generator-item__datamatrix a').replaceChildren();
+        item.querySelector('.generator-item__datamatrix a').appendChild(dataMatrix);
+        item.querySelector('.generator-item__qrcode a').replaceChildren();
+        item.querySelector('.generator-item__qrcode a').appendChild(qrCode);
       } else {
-        item.querySelector('.generator-item__code').innerHTML += '<div class="empty-code"></div>';
+        item.querySelector('.generator-item__datamatrix').innerHTML += '<div class="empty-code"></div>';
+        item.querySelector('.generator-item__qrcode').innerHTML += '<div class="empty-code"></div>';
       }
 
       generatorTable.appendChild(item);
-    });
-  }
+    }
+  });
 }
 
 function identifyBrand(sku) {
@@ -149,4 +86,8 @@ function identifyBrand(sku) {
     brand = 'Invalid SKU'
   }
   return brand;
+}
+
+function downloadCode(elements) {
+  console.log('Test Element');
 }

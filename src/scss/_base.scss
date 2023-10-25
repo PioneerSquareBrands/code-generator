@@ -10,12 +10,13 @@ body {
 }
 
 main {
-  display: grid;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
   justify-content: center;
   height: 98vh;
   padding: 0 20px;
   min-width: 360px;
+  margin-top: 200px;
 }
 
 .wrapper {
@@ -90,6 +91,7 @@ fieldset {
   }
 }
 
+// v1 Styles
 .generate {
   opacity: 1;
 
@@ -136,9 +138,14 @@ fieldset {
   }
 }
 
+// v2 Styles
 .generator-two {
   max-width: 880px;
-  margin-bottom: 200px;
+}
+
+.generator-empty {
+  display: block;
+  padding: 12px 4px;
 }
 
 .generator-item {
@@ -148,7 +155,7 @@ fieldset {
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-columns: 2fr 2fr 3fr 2fr;
+  grid-template-columns: 2fr 2fr 3fr 100px 100px;
   align-items: center;
 
   &__brand span {
@@ -177,7 +184,8 @@ fieldset {
     color: #aaa;
   }
 
-  &__code {
+  &__datamatrix,
+  &__qrcode {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -185,14 +193,20 @@ fieldset {
     svg {
       width: 100px;
       height: auto;
-      margin: -12px;
     }
+  }
+
+  &__datamatrix svg {
+    margin: -12px 0 -12px 4px;
+  }
+
+  &__qrcode svg {
+    margin: -12px -12px -12px 4px;
   }
 
   .empty-code {
     width: 100%;
     max-width: 92px;
-    margin: -8px;
     position: relative;
     
     &:before {
@@ -221,5 +235,12 @@ fieldset {
       height: 50px;
       opacity: 0.8;
     }
+  }
+
+  &__datamatrix .empty-code {
+    margin: -8px 2px -8px -8px;
+  }
+  &__qrcode .empty-code {
+    margin: -8px -8px -8px 0;
   }
 }
