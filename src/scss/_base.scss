@@ -25,14 +25,6 @@ main {
   margin: 0 auto;
 }
 
-.generator {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 0;
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
 }
@@ -89,6 +81,15 @@ fieldset {
   input[type="radio"] + label {
     cursor: pointer;
   }
+}
+
+code {
+  background-color: #666666;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 2px 4px;
+  vertical-align: middle;
+  border-radius: 2px;
 }
 
 // v2 Styles
