@@ -103,7 +103,22 @@ code {
 
 .generator-empty {
   display: block;
-  padding: 12px 4px;
+  padding: 0 4px;
+}
+
+.generator-header {
+  background-color: #f3f3f3;
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 2fr 2fr 3fr 100px 100px;
+  align-items: center;
+
+  div {
+    font-weight: 700;
+  }
 }
 
 .generator-item {
@@ -115,6 +130,7 @@ code {
   display: grid;
   grid-template-columns: 2fr 2fr 3fr 100px 100px;
   align-items: center;
+  gap: 8px;
 
   &__brand span {
     font-size: 12px;
@@ -148,18 +164,26 @@ code {
     align-items: center;
     justify-content: flex-end;
 
+    a {
+      display: block;
+      position: relative;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      opacity: 0.2;
+      z-index: 5;
+    }
+
     svg {
       width: 100px;
       height: auto;
     }
-  }
-
-  &__datamatrix svg {
-    margin: -12px 0 -12px 4px;
-  }
-
-  &__qrcode svg {
-    margin: -12px -12px -12px 4px;
   }
 
   .empty-code {

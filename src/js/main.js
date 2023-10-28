@@ -45,8 +45,8 @@ function lister() {
         <div class="generator-item__value">${value}</div>
         <div class="generator-item__brand"><span>${itemBrand}</span></div>
         <div class="generator-item__url">${itemURL}</div>
-        <div class="generator-item__datamatrix"><a href="#"></a></div>
-        <div class="generator-item__qrcode"><a href="#"></a></div>
+        <div class="generator-item__datamatrix generator-item__code"><a href="#" data-type="datamatrix" data-sku="${value}"></a></div>
+        <div class="generator-item__qrcode generator-item__code"><a href="#" data-type="qrcode" data-sku="${value}"></a></div>
       `;
 
       // Check if URL is invalid, otherwise generate datamatrix/qr code
@@ -74,6 +74,8 @@ function lister() {
       generatorTable.appendChild(item);
     }
   });
+
+  buttonDownload();
 }
 
 function identifyBrand(sku) {
@@ -88,6 +90,32 @@ function identifyBrand(sku) {
   return brand;
 }
 
-function downloadCode(elements) {
-  console.log('Test Element');
+function buttonDownload(){
+  document.querySelectorAll('.generator-item__code a').forEach(function(b) {
+    b.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      let button = e.target;
+      let name = button.dataset.sku;
+      let type = button.dataset.type;
+      
+      let svg = new XMLSerializer().serializeToString(button.querySelector('svg'));
+
+      let canvas = document.createElement('canvas');
+      let ctx = canvas.getContext('2d');
+
+      canvg(canvas, svg);
+
+      let dataURL = canvas.toDataURL('image/png');
+
+      let a = document.createElement('a');
+      a.href = dataURL;
+      a.download = name + '-' + type + '.png';
+      a.style.display = 'none';
+      
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  });
 }
