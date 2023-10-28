@@ -304,9 +304,3 @@ code {
   height: 50px;
   opacity: 0.8;
 }
-.generator-item__datamatrix .empty-code {
-  margin: -8px 2px -8px -8px;
-}
-.generator-item__qrcode .empty-code {
-  margin: -8px -8px -8px 0;
-}

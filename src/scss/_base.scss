@@ -218,11 +218,4 @@ code {
       opacity: 0.8;
     }
   }
-
-  &__datamatrix .empty-code {
-    margin: -8px 2px -8px -8px;
-  }
-  &__qrcode .empty-code {
-    margin: -8px -8px -8px 0;
-  }
 }
