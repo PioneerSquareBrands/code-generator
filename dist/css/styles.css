@@ -184,11 +184,6 @@ code {
   max-width: 880px;
 }
 
-.generator-empty {
-  display: block;
-  padding: 0 4px;
-}
-
 .generator-header {
   background-color: #f3f3f3;
   margin: 12px 0;
@@ -205,6 +200,13 @@ code {
 }
 .generator-header div {
   font-weight: 700;
+}
+
+.generator-table:empty::after {
+  content: "Nothing to show here yet. Type a SKU in the field above.";
+  padding: 0 4px;
+  font-style: italic;
+  opacity: 0.8;
 }
 
 .generator-item {

@@ -21,32 +21,33 @@ function lister() {
   inputArr.forEach(value => {
     if(value != ''){
       let item = document.createElement('div');
+      let sku = value.toUpperCase();
     
       // Make the item div
       item.classList.add('generator-item');
 
       // Identify the Brand
-      let itemBrand = identifyBrand(value);
+      let itemBrand = identifyBrand(sku);
       item.classList.add('brand--' + itemBrand.toLowerCase().replace(' ', '-'));
 
       // Identify the URL
       let itemURL;
 
       if(itemBrand == 'Brenthaven') {
-        itemURL = 'https://brenthaven.com/' + value;
+        itemURL = 'https://brenthaven.com/' + sku;
       } else if (itemBrand == 'Gumdrop Cases') {
-        itemURL = 'https://www.gumdropcases.com/' + value;
+        itemURL = 'https://www.gumdropcases.com/' + sku;
       } else {
         itemURL = 'Invalid URL. Please check the value.';
       }
 
       // Insert the item content
       item.innerHTML = `
-        <div class="generator-item__value">${value}</div>
+        <div class="generator-item__value">${sku}</div>
         <div class="generator-item__brand"><span>${itemBrand}</span></div>
         <div class="generator-item__url">${itemURL}</div>
-        <div class="generator-item__datamatrix generator-item__code"><a href="#" data-type="datamatrix" data-sku="${value}"></a></div>
-        <div class="generator-item__qrcode generator-item__code"><a href="#" data-type="qrcode" data-sku="${value}"></a></div>
+        <div class="generator-item__datamatrix generator-item__code"><a href="#download_datamatrix" data-type="datamatrix" data-sku="${sku}"></a></div>
+        <div class="generator-item__qrcode generator-item__code"><a href="#download_qr" data-type="qrcode" data-sku="${sku}"></a></div>
       `;
 
       // Check if URL is invalid, otherwise generate datamatrix/qr code
@@ -82,7 +83,7 @@ function identifyBrand(sku) {
   let brand;
   if (/^\d{4}(?:$|\d{3}$)/.test(sku)) {
     brand = 'Brenthaven';
-  } else if (/\b\d{2}[A-Za-z]\d{3}(?:$|[EC]\d{2}[-]\d(?:$|\d$))/.test(sku)) {
+  } else if (/\b\d{2}[A-Za-z]\d{3}(?:$|[EeCc]\d{2}[-]\d(?:$|\d$))/.test(sku)) {
     brand = 'Gumdrop Cases';
   } else {
     brand = 'Invalid SKU'
@@ -112,7 +113,7 @@ function buttonDownload(){
       a.href = dataURL;
       a.download = name + '-' + type + '.png';
       a.style.display = 'none';
-      
+
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

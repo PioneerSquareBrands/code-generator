@@ -17,11 +17,13 @@
     <div class="wrapper generator-two">
       <h1>PSB 2D Code Generator</h1>
       <p>Generate Data Matrix and QR Code by filling the field below with Brenthaven or Gumdropcases SKUs.</p>
+      <p><strong>Notes:</strong></p>
       <ul>
         <li>You can add multiple SKUs separated by commas to generate code in bulk <br />
           <em>Example</em>: <code>2827, 01L012, 06D010E01-20, 6044</code>
         </li>
         <li>Click on the generated Data Matrix/QR code to download them</li>
+        <li>All lower case characters in the SKUs are converted to uppercase to ensure consistency with the generated code.</li>
       </ul>
       <form class="bulk-generator">
         <input type="text" placeholder="2827, 01L012, 06D010E01-20, 6044">
@@ -34,7 +36,6 @@
         <div>QR Code</div>
       </div>
       <div class="generator-table">
-        <span class="generator-empty">Nothing to show here yet. Type a SKU in the field above</span>
       </div>
     </div>
   </main>
