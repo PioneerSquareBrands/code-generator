@@ -147,6 +147,7 @@ input[type=text] {
   width: 100%;
   padding: 6px 12px;
   border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
 }
 
 fieldset {
@@ -277,7 +278,7 @@ code {
 }
 .generator-item .empty-code {
   width: 100%;
-  max-width: 92px;
+  max-width: 100px;
   position: relative;
 }
 .generator-item .empty-code:before {

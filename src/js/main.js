@@ -68,8 +68,8 @@ function lister() {
         item.querySelector('.generator-item__qrcode a').replaceChildren();
         item.querySelector('.generator-item__qrcode a').appendChild(qrCode);
       } else {
-        item.querySelector('.generator-item__datamatrix').innerHTML += '<div class="empty-code"></div>';
-        item.querySelector('.generator-item__qrcode').innerHTML += '<div class="empty-code"></div>';
+        item.querySelector('.generator-item__datamatrix').innerHTML = '<div class="empty-code"></div>';
+        item.querySelector('.generator-item__qrcode').innerHTML = '<div class="empty-code"></div>';
       }
 
       generatorTable.appendChild(item);
